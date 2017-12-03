@@ -9,5 +9,5 @@ resolvers += Resolver.jcenterRepo
 
 libraryDependencies ++= Seq(
   //JDA
-  "net.dv8tion" % "JDA" % "3.3.0_260"
+  "net.dv8tion" % "JDA" % "3.3.0_260",
 )
