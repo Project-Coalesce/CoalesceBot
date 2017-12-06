@@ -3,19 +3,20 @@ package org.coalesce.coalescebot.command
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
 import org.coalesce.coalescebot.CoalesceBot
+import org.coalesce.coalescebot._
+import org.coalesce.coalescebot.command.image.InvertCommand
 
 object CommandManager extends ListenerAdapter {
 
   val commands: Set[BotCommand] = Set(
-    PingCommand
+    PingCommand,
+    EightBallCommand,
+    InvertCommand
   )
 
   override def onMessageReceived(event: MessageReceivedEvent): Unit = {
 
     if (event.getMessage.getRawContent.startsWith(CoalesceBot.PREFIX)){
-
-      println(new CommandContext(event).name)
-
       handleCommand(new CommandContext(event))
     }
   }
@@ -23,7 +24,7 @@ object CommandManager extends ListenerAdapter {
   private def handleCommand(context: CommandContext): Unit = {
     commands.find(_.doesMatch(context.name)) match {
       case Some(c) => c.execute(context)
-      case None => //TODO: ADD ERROR OR SOMETHING
+      case None => context.channel.sendError("No such command!").queue()
     }
   }
 
