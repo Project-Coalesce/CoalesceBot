@@ -1,9 +1,7 @@
-package org.coalesce.coalescebot.command.image
+package org.coalesce.coalescebot.command.executors.image
 
 import java.awt.Color
-import java.awt.image.BufferedImage
-import java.io.{ByteArrayInputStream, ByteArrayOutputStream, InputStream}
-import javax.imageio.ImageIO
+import java.io.InputStream
 
 import net.dv8tion.jda.core.MessageBuilder
 import org.coalesce.coalescebot._

@@ -1,6 +1,7 @@
-package org.coalesce.coalescebot.command
+package org.coalesce.coalescebot.command.executors.misc
 
 import org.coalesce.coalescebot._
+import org.coalesce.coalescebot.command.{BotCommand, CommandContext}
 
 object PingCommand extends BotCommand {
 

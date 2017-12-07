@@ -1,4 +1,4 @@
-package org.coalesce.coalescebot.command
+package org.coalesce.coalescebot.command.executors
 
 import java.awt.Color
 import java.awt.image.BufferedImage
@@ -8,8 +8,8 @@ import javax.imageio.ImageIO
 
 import net.dv8tion.jda.core.entities.MessageChannel
 
+import scala.collection.JavaConverters._
 import scala.concurrent.{ExecutionContext, ExecutionContextExecutor, Future, Promise}
-import collection.JavaConverters._
 
 package object image {
 

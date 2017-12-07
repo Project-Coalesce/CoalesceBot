@@ -4,7 +4,9 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
 import org.coalesce.coalescebot.CoalesceBot
 import org.coalesce.coalescebot._
-import org.coalesce.coalescebot.command.image.InvertCommand
+import org.coalesce.coalescebot.command.executors.fun.EightBallCommand
+import org.coalesce.coalescebot.command.executors.image.InvertCommand
+import org.coalesce.coalescebot.command.executors.misc.PingCommand
 
 object CommandManager extends ListenerAdapter {
 

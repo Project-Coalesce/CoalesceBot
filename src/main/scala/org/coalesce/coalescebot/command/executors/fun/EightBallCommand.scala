@@ -1,9 +1,9 @@
-package org.coalesce.coalescebot.command
-
-import scala.util.Random
-
+package org.coalesce.coalescebot.command.executors.fun
 
 import org.coalesce.coalescebot._
+import org.coalesce.coalescebot.command.{BotCommand, CommandContext}
+
+import scala.util.Random
 
 object EightBallCommand extends BotCommand {
 
