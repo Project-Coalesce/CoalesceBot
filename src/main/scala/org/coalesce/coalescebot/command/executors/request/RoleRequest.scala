@@ -4,7 +4,7 @@ import org.coalesce.coalescebot.command.{BotCommand, CommandContext}
 
 class RoleRequest extends BotCommand {
 
-  val availableRoles = Set[Long] (388145098199924736L,
+  val availableRoles: Set[Long] = Set (388145098199924736L,
     388145098199924736L,
     388145098199924736L,
     388145098199924736L)
