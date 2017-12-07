@@ -43,7 +43,7 @@ package object image {
     }
   }
 
-  private[image] def editPixels(inputStream: InputStream)(f: (BufferedImage, Seq[(Int, Int, Color)]) => Seq[(Int, Int, Color)]): InputStream = {
+  private[image] def editPixels(inputStream: InputStream, f: (BufferedImage, Seq[(Int, Int, Color)]) => Seq[(Int, Int, Color)]): InputStream = {
 
     val image: BufferedImage = ImageIO.read(inputStream)
 

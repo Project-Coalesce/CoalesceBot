@@ -17,7 +17,7 @@ object InvertCommand extends ImageCommand {
   override val desc: String = "Inverts the color of the last image in chat."
 
   override def modifyImage(inputStream: InputStream): InputStream =
-    editPixels(inputStream)((_, ps) => {
+    editPixels(inputStream, (_, ps) => {
       ps.map(p => (p._1, p._2, invertColor(p._3)))
     })
 
