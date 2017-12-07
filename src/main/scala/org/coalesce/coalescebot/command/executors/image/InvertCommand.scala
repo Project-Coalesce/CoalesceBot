@@ -10,29 +10,14 @@ import org.coalesce.coalescebot.command.{BotCommand, CommandContext}
 import scala.concurrent.{ExecutionContext, ExecutionContextExecutor}
 import scala.util.{Failure, Success}
 
-object InvertCommand extends BotCommand {
+object InvertCommand extends ImageCommand {
 
   override val name: String = "invert"
   override val aliases: Set[String] = Set.empty[String]
   override val desc: String = "Inverts the color of the last image in chat."
 
-  implicit val gc: ExecutionContextExecutor = ExecutionContext.global
-
-  override def execute(commandContext: CommandContext): Unit = {
-    lastImageUrl(commandContext.channel)
-      .flatMap(getImage)
-      .map(invertImage)
-      .onComplete{
-      case Success(image) =>
-        commandContext.channel.sendFile(image, System.currentTimeMillis().toString + ".png", new MessageBuilder().append(" ").build()).queue()
-      case Failure(e) =>
-        e.printStackTrace()
-        commandContext.channel.sendError("No images to modify!").queue()
-    }
-  }
-
-  def invertImage: InputStream => InputStream =
-    editPixels(_)((image, ps) => {
+ override val modifyImage: InputStream => InputStream =
+    editPixels(_)((_, ps) => {
       ps.map(p => (p._1, p._2, invertColor(p._3)))
     })
 
