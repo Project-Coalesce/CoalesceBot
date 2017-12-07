@@ -12,8 +12,16 @@ object CoalesceBot extends App {
   val PREFIX = "c!"
   val BOT_COLOR = Color.decode("#4CAF50")
 
+  /**
+    * @usecase tokens
+    *          0 - Discord token
+    *          1 - OAuth2 token
+    *          2 - ? (Probably console logging)
+    */
+  val tokens: Array[String] = Source.fromFile("src/main/resources/token.txt").mkString.split(":") // We will eventually change this, but for now this will work
+
   val JDA = new JDABuilder(AccountType.BOT)
-    .setToken(Source.fromFile("src/main/resources/token.txt").mkString)
+    .setToken(tokens(0))
     .buildBlocking()
 
   //Register Event Handler
