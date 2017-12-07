@@ -62,4 +62,12 @@ package object image {
     ImageIO.write(image, "png", outputStream)
     new ByteArrayInputStream(outputStream.toByteArray)
   }
+
+  private[image] def editImage(inputStream: InputStream, f: BufferedImage => BufferedImage): InputStream = {
+    val image: BufferedImage = ImageIO.read(inputStream)
+
+    val outputStream = new ByteArrayOutputStream
+    ImageIO.write(f(image), "png", outputStream)
+    new ByteArrayInputStream(outputStream.toByteArray)
+  }
 }

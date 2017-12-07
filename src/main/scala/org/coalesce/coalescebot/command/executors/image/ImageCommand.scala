@@ -26,6 +26,6 @@ abstract class ImageCommand extends BotCommand {
       }
   }
 
-  abstract def modifyImage(inputStream: InputStream): InputStream
+  def modifyImage(inputStream: InputStream): InputStream
 
 }
