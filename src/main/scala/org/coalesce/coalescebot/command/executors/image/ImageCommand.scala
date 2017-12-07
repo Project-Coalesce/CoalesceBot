@@ -14,7 +14,9 @@ abstract class ImageCommand extends BotCommand {
   final override def execute(context: CommandContext): Unit = {
     lastImageUrl(context.channel)
       .flatMap(getImage)
-      .flatMap(i => Future{ modifyImage(i) }) //Wanna keep this of the main thread
+      .flatMap(i => Future {
+        modifyImage(i)
+      }) //Wanna keep this off the main thread
       .onComplete{
         case Success(image) =>
           context.channel.sendFile(image, System.currentTimeMillis().toString + ".png", new MessageBuilder().append(" ").build()).queue()
@@ -24,6 +26,6 @@ abstract class ImageCommand extends BotCommand {
       }
   }
 
-  abstract val modifyImage: InputStream => InputStream
+  abstract def modifyImage(inputStream: InputStream): InputStream
 
 }
