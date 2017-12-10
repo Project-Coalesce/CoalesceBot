@@ -3,9 +3,8 @@ package org.coalescing.coalescebot.command
 import java.awt.Color
 import java.util.concurrent.TimeUnit
 
-import net.dv8tion.jda.core.EmbedBuilder
-import net.dv8tion.jda.core.entities
-import net.dv8tion.jda.core.entities.{PrivateChannel, PrivateChannel => _, _}
+import net.dv8tion.jda.core.{EmbedBuilder, JDA}
+import net.dv8tion.jda.core.entities.{PrivateChannel, _}
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import org.coalescing.coalescebot.CoalesceBot
 import org.coalescing.coalescebot._
@@ -15,6 +14,7 @@ import scala.concurrent.duration.TimeUnit
 class CommandContext(val event: MessageReceivedEvent) {
 
   //Basic stuff that is just from the event
+  val jda: JDA = event.getJDA
   val guild: Guild = event.getGuild
   val channel: MessageChannel = event.getChannel
   val message: Message = event.getMessage

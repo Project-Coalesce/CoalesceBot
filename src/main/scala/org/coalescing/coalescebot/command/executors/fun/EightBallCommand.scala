@@ -43,6 +43,11 @@ object EightBallCommand extends BotCommand with Embeddable {
   )
 
   override def execute(context: CommandContext): Unit = {
+    if (context.args.size <= 0) {
+      context.sendError("Ask your question!")
+      return
+    }
+
     val question = context.args.mkString(" ")
     val response = responses.toList(Random.nextInt(responses.size))
 

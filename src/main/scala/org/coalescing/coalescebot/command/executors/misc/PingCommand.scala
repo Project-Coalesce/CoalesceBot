@@ -1,5 +1,6 @@
 package org.coalescing.coalescebot.command.executors.misc
 
+import java.awt.Color
 import java.util.concurrent.TimeUnit
 
 import org.coalescing.coalescebot._
@@ -14,7 +15,10 @@ object PingCommand extends BotCommand with Embeddable {
 
   //TODO: Add more to this
   override def execute(context: CommandContext): Unit = {
-    context(embed().makeEmbed(title = "Pong! :ping_pong:"),
-      queueAfter = none, deleteAfter = (30L, TimeUnit.SECONDS))
+    context(embed().makeEmbed(
+      title = "Pong! :ping_pong:",
+      color = Color.cyan,
+      fields = Array(field("Discord API", s"${context.jda.getPing} ms"))
+    ), queueAfter = none, deleteAfter = (30L, TimeUnit.SECONDS))
   }
 }

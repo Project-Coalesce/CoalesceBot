@@ -22,6 +22,12 @@ object RoleRequestCommand extends BotCommand with Embeddable {
 
   override def execute(context: CommandContext): Unit = {
     val user = context.author
+
+    if (context.args.size <= 0) {
+      context.sendError("Specify your requested role!")
+      return
+    }
+
     val role = context.guild.getRolesByName(context.args(0), true).get(0)
 
     if (role == null || blacklist.contains(role.getIdLong) || context.member.getRoles.contains(role)) {

@@ -30,7 +30,7 @@ package object coalescebot {
         queueAfter, deleteAfter)
     }
 
-    def sendTask(task: RestAction[Message], deleteAfter: (Long, TimeUnit), queueAfter: (Long, TimeUnit)): Unit = {
+    def sendTask(task: RestAction[Message], queueAfter: (Long, TimeUnit), deleteAfter: (Long, TimeUnit)): Unit = {
       val remove: (Message => Unit) =
         message => if (deleteAfter != null) message.delete().queueAfter(deleteAfter._1, deleteAfter._2)
 
@@ -51,6 +51,7 @@ package object coalescebot {
           .setTitle(title, url)
           .setAuthor(author, null, authorUrl)
           .setColor(color)
+          .setDescription(desc    )
       }
   }
 
