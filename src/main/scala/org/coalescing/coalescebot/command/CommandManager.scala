@@ -1,12 +1,12 @@
-package org.coalesce.coalescebot.command
+package org.coalescing.coalescebot.command
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
-import org.coalesce.coalescebot.CoalesceBot
-import org.coalesce.coalescebot._
-import org.coalesce.coalescebot.command.executors.fun.EightBallCommand
-import org.coalesce.coalescebot.command.executors.image.InvertCommand
-import org.coalesce.coalescebot.command.executors.misc.PingCommand
+import org.coalescing.coalescebot.CoalesceBot
+import org.coalescing.coalescebot.command.executors.fun.EightBallCommand
+import org.coalescing.coalescebot.command.executors.image.InvertCommand
+import org.coalescing.coalescebot.command.executors.misc.PingCommand
+import org.coalescing.coalescebot._
 
 object CommandManager extends ListenerAdapter {
 
@@ -26,7 +26,7 @@ object CommandManager extends ListenerAdapter {
   private def handleCommand(context: CommandContext): Unit = {
     commands.find(_.doesMatch(context.name)) match {
       case Some(c) => c.execute(context)
-      case None => context.channel.sendError("No such command!").queue()
+      case None => context.channel.sendError("No such command!")
     }
   }
 

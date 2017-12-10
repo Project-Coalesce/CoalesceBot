@@ -1,16 +1,17 @@
-package org.coalesce.coalescebot.command.executors.image
+package org.coalescing.coalescebot.command.executors.image
 
 import java.awt.Color
 import java.io.InputStream
 
 import net.dv8tion.jda.core.MessageBuilder
-import org.coalesce.coalescebot._
-import org.coalesce.coalescebot.command.{BotCommand, CommandContext}
+import org.coalescing.coalescebot._
+import org.coalescing.coalescebot.command.{BotCommand, CommandContext}
+import org.coalescing.coalescebot.utilities.Embeddable
 
 import scala.concurrent.{ExecutionContext, ExecutionContextExecutor}
 import scala.util.{Failure, Success}
 
-object InvertCommand extends BotCommand {
+object InvertCommand extends BotCommand with Embeddable {
 
   override val name: String = "invert"
   override val aliases: Set[String] = Set.empty[String]
@@ -27,7 +28,7 @@ object InvertCommand extends BotCommand {
         commandContext.channel.sendFile(image, System.currentTimeMillis().toString + ".png", new MessageBuilder().append(" ").build()).queue()
       case Failure(e) =>
         e.printStackTrace()
-        commandContext.channel.sendError("No images to modify!").queue()
+        commandContext.channel.sendError("No images to modify!")
     }
   }
 

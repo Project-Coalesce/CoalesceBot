@@ -1,9 +1,9 @@
-package org.coalesce.coalescebot
+package org.coalescing.coalescebot
 
 import java.awt.Color
 
 import net.dv8tion.jda.core.{AccountType, JDABuilder}
-import org.coalesce.coalescebot.command.CommandManager
+import org.coalescing.coalescebot.command.CommandManager
 
 import scala.io.Source
 
@@ -26,5 +26,4 @@ object CoalesceBot extends App {
 
   //Register Event Handler
   JDA.addEventListener(CommandManager)
-
 }

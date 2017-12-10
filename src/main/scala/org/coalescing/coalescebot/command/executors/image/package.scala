@@ -1,4 +1,4 @@
-package org.coalesce.coalescebot.command.executors
+package org.coalescing.coalescebot.command.executors
 
 import java.awt.Color
 import java.awt.image.BufferedImage

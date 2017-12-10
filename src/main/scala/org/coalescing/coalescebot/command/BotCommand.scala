@@ -1,4 +1,4 @@
-package org.coalesce.coalescebot.command
+package org.coalescing.coalescebot.command
 
 abstract class BotCommand() {
 
