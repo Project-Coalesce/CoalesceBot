@@ -4,16 +4,19 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
 import org.coalescing.coalescebot.CoalesceBot
 import org.coalescing.coalescebot.command.executors.fun.EightBallCommand
-import org.coalescing.coalescebot.command.executors.image.InvertCommand
+import org.coalescing.coalescebot.command.executors.image.{InvertCommand, WhoDidThisCommand}
 import org.coalescing.coalescebot.command.executors.misc.PingCommand
 import org.coalescing.coalescebot._
+import org.coalescing.coalescebot.command.executors.request.RoleRequestCommand
 
 object CommandManager extends ListenerAdapter {
 
   val commands: Set[BotCommand] = Set(
     PingCommand,
     EightBallCommand,
-    InvertCommand
+    InvertCommand,
+    WhoDidThisCommand,
+    RoleRequestCommand
   )
 
   override def onMessageReceived(event: MessageReceivedEvent): Unit = {

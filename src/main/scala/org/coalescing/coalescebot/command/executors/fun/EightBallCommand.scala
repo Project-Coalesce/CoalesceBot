@@ -43,8 +43,13 @@ object EightBallCommand extends BotCommand with Embeddable {
   )
 
   override def execute(context: CommandContext): Unit = {
-    //val response = responses.keySet(Random.nextInt(responses.size))
-    //context(embed().makeEmbed(title = ":8ball: Magic Eight Ball", desc = response),
-     // queueAfter = none, deleteAfter = (1L, TimeUnit.MINUTES))
+    val question = context.args.mkString(" ")
+    val response = responses.toList(Random.nextInt(responses.size))
+
+    context(embed().makeEmbed(
+      title = ":8ball: Magic Eight Ball",
+      color = response._2,
+      fields = Array(field("Question", question, false), field("Response", response._1, false))
+    ), queueAfter = none, deleteAfter = (30L, TimeUnit.SECONDS))
   }
 }

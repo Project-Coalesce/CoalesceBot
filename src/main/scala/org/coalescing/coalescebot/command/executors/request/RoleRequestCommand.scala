@@ -6,7 +6,7 @@ import org.coalescing.coalescebot._
 import org.coalescing.coalescebot.command.{BotCommand, CommandContext}
 import org.coalescing.coalescebot.utilities.Embeddable
 
-object RoleRequest extends BotCommand with Embeddable {
+object RoleRequestCommand extends BotCommand with Embeddable {
 
   val blacklist: Set[Long] = Set (
     388184083508756482L, // Founder
