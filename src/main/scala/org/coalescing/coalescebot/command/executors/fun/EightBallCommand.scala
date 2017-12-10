@@ -43,8 +43,8 @@ object EightBallCommand extends BotCommand with Embeddable {
   )
 
   override def execute(context: CommandContext): Unit = {
-    if (context.args.size <= 0) {
-      context.sendError("Ask your question!")
+    if (context.args.length <= 0) {
+      context.err("Ask your question!")
       return
     }
 

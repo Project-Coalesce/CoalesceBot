@@ -2,9 +2,12 @@ package org.coalescing.coalescebot.command.executors.request
 
 import java.util.concurrent.TimeUnit
 
-import org.coalescing.coalescebot._
+import org.coalescing.coalescebot.{listExtensions, _}
+import predef._
 import org.coalescing.coalescebot.command.{BotCommand, CommandContext}
 import org.coalescing.coalescebot.utilities.Embeddable
+
+import scala.concurrent.JavaConversions
 
 object RoleRequestCommand extends BotCommand with Embeddable {
 
@@ -23,15 +26,14 @@ object RoleRequestCommand extends BotCommand with Embeddable {
   override def execute(context: CommandContext): Unit = {
     val user = context.author
 
-    if (context.args.size <= 0) {
-      context.sendError("Specify your requested role!")
+    if (context.args.length <= 0) {
+      context.err("Specify your requested role!")
       return
     }
 
-    val role = context.guild.getRolesByName(context.args(0), true).get(0)
-
+    val role = context.guild.getRolesByName(context.args(0), true).getOrNull(0)
     if (role == null || blacklist.contains(role.getIdLong) || context.member.getRoles.contains(role)) {
-      context.sendError("Invalid role!")
+      context.err("Invalid role!")
       return
     }
 

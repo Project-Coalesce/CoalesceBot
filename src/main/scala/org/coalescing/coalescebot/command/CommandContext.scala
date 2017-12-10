@@ -24,7 +24,7 @@ class CommandContext(val event: MessageReceivedEvent) {
 
   def usePrivateChannel(task: (PrivateChannel => Unit)): Unit = author.openPrivateChannel().queue(channel => task(channel))
 
-  def sendError(message: String): Unit = channel.sendError(message)
+  def err(message: String): Unit = channel.sendError(message)
 
   def mention(text: String): Unit = apply(text, author, null, null)
 

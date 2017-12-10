@@ -11,5 +11,5 @@ trait Embeddable {
   def field(title: String, desc: String, inline: Boolean = true): MessageEmbed.Field =
     new MessageEmbed.Field(title, desc, inline)
 
-  val none: (Long, TimeUnit) = (0L, TimeUnit.SECONDS)
+  val none: (Long, TimeUnit) = (0L, TimeUnit.NANOSECONDS)
 }

@@ -1,13 +1,14 @@
 package org.coalescing
 
 import java.awt.Color
+import java.util
 import java.util.concurrent.TimeUnit
-import java.util.function.Consumer
 
 import net.dv8tion.jda.core.EmbedBuilder
 import net.dv8tion.jda.core.entities._
 import net.dv8tion.jda.core.requests.RestAction
 import org.coalescing.coalescebot.utilities.Embeddable
+import predef.Implicits.function2Consumer
 
 package object coalescebot {
 
@@ -34,7 +35,7 @@ package object coalescebot {
       val remove: (Message => Unit) =
         message => if (deleteAfter != null) message.delete().queueAfter(deleteAfter._1, deleteAfter._2)
 
-      if (queueAfter != null) task.queueAfter(queueAfter._1, queueAfter._2, toConsumer(remove))
+      if (queueAfter != null) task.queueAfter(queueAfter._1, queueAfter._2, function2Consumer(remove))
       else task.queue()
     }
   }
@@ -55,5 +56,7 @@ package object coalescebot {
       }
   }
 
-  def toConsumer[T](task: T => Unit): Consumer[T] = (args: T) => task(args)
+  implicit def listExtensions[T](seq: util.List[T]) = new {
+    def getOrNull(index: Int): T = if (seq.size() <= index) null.asInstanceOf[T] else seq.get(index)
+  }
 }
