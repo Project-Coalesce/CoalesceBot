@@ -22,7 +22,7 @@ abstract class ImageCommand extends BotCommand {
         context.channel.sendFile(image, System.currentTimeMillis().toString + ".png", new MessageBuilder().append(" ").build()).queue()
       case Failure(e) =>
         e.printStackTrace()
-        context.channel.sendError("No images to modify!")
+        context.err("No images to modify!")
     }
   }
 

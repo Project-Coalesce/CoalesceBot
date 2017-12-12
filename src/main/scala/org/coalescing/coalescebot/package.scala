@@ -42,18 +42,24 @@ package object coalescebot {
 
   implicit class RichEmbedBuilder(embed: EmbedBuilder) {
     def makeEmbed(title: String = "", url: String = "",
-                   author: String = null, authorUrl: String = null,
-                   desc: String = "",
-                   color: Color = CoalesceBot.BOT_COLOR,
-                   fields: Array[MessageEmbed.Field] = Array.empty[MessageEmbed.Field]): EmbedBuilder =
+                  author: String = null, authorUrl: String = null,
+                  desc: String = "",
+                  color: Color = CoalesceBot.BOT_COLOR,
+                  fields: Array[MessageEmbed.Field] = Array.empty[MessageEmbed.Field],
+                  footer: String = ""): EmbedBuilder =
       {
         fields.foreach(embed.addField)
         embed
           .setTitle(title, url)
           .setAuthor(author, null, authorUrl)
           .setColor(color)
-          .setDescription(desc    )
+          .setDescription(desc)
+          .setFooter(footer, null)
       }
+  }
+
+  implicit class RichUser(user: User) {
+    def usePrivateChannel(task: (PrivateChannel => Unit)): Unit = user.openPrivateChannel().queue(channel => task(channel))
   }
 
   implicit def listExtensions[T](seq: util.List[T]) = new {

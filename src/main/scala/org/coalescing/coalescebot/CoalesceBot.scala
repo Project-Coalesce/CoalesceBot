@@ -26,4 +26,6 @@ object CoalesceBot extends App {
 
   //Register Event Handler
   JDA.addEventListener(CommandManager)
+
+  val REQUEST_CHANNEL = JDA.getTextChannelById(311317585775951872L)
 }

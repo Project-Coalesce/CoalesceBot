@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit
 import net.dv8tion.jda.core.{EmbedBuilder, JDA}
 import net.dv8tion.jda.core.entities.{PrivateChannel, _}
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import org.coalescing.coalescebot.CoalesceBot
+import org.coalescing.coalescebot.CoalesceBot.PREFIX
 import org.coalescing.coalescebot._
 
 import scala.concurrent.duration.TimeUnit
@@ -22,8 +22,6 @@ class CommandContext(val event: MessageReceivedEvent) {
   val author: User = event.getAuthor
   val member: Member = guild.getMember(author)
 
-  def usePrivateChannel(task: (PrivateChannel => Unit)): Unit = author.openPrivateChannel().queue(channel => task(channel))
-
   def err(message: String): Unit = channel.sendError(message)
 
   def mention(text: String): Unit = apply(text, author, null, null)
@@ -37,7 +35,7 @@ class CommandContext(val event: MessageReceivedEvent) {
   //Doing this so that the other args variable won't be in scope
   val (name, args) = {
     val rawArgs = rawMessage.split(" ")
-    (rawArgs.head.replace(CoalesceBot.PREFIX, ""), rawArgs.tail)
+    (rawArgs.head.substring(PREFIX.length), rawArgs.tail)
   }
 
 }
